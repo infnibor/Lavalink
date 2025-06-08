@@ -1,5 +1,4 @@
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
-import com.vanniktech.maven.publish.SonatypeHost
 import org.ajoberstar.grgit.Grgit
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -28,6 +27,8 @@ allprojects {
         mavenCentral() // main maven repo
         mavenLocal()   // useful for developing
         maven("https://m2.dv8tion.net/releases")
+        maven("https://maven.pcreators.pl/releases")
+        maven("https://maven.pcreators.pl/snapshots")
         maven("https://maven.lavalink.dev/releases")
         maven("https://maven.lavalink.dev/snapshots")
         maven("https://jitpack.io") // build projects directly from GitHub
@@ -55,10 +56,11 @@ subprojects {
             configure<PublishingExtension> {
                 val mavenUsername = findProperty("MAVEN_USERNAME") as String?
                 val mavenPassword = findProperty("MAVEN_PASSWORD") as String?
+
                 if (!mavenUsername.isNullOrEmpty() && !mavenPassword.isNullOrEmpty()) {
                     repositories {
-                        val snapshots = "https://maven.lavalink.dev/snapshots"
-                        val releases = "https://maven.lavalink.dev/releases"
+                        val snapshots = "https://maven.pcreators.pl/snapshots"
+                        val releases = "https://maven.pcreators.pl/releases"
 
                         maven(if (release) releases else snapshots) {
                             credentials {
@@ -68,23 +70,13 @@ subprojects {
                         }
                     }
                 } else {
-                    logger.lifecycle("Not publishing to maven.lavalink.dev because credentials are not set")
+                    logger.lifecycle("Not publishing to maven.pcreators.pl because credentials are not set")
                 }
-            }
-            // only publish releases to central portal
-            if (release) {
-                configure<MavenPublishBaseExtension> {
-                    coordinates(group.toString(), project.the<BasePluginExtension>().archivesName.get(), version.toString())
-                    val mavenCentralUsername = findProperty("mavenCentralUsername") as String?
-                    val mavenCentralPassword = findProperty("mavenCentralPassword") as String?
-                    if (!mavenCentralUsername.isNullOrEmpty() && !mavenCentralPassword.isNullOrEmpty()) {
-                        publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, false)
-                        signAllPublications()
-                    } else {
-                        logger.lifecycle("Not publishing to OSSRH due to missing credentials")
-                    }
 
+                publications.withType<MavenPublication>().configureEach {
                     pom {
+                        name = "Lavalink"
+                        description = "Standalone audio sending node based on Lavaplayer."
                         url = "https://github.com/lavalink-devs/Lavalink"
 
                         licenses {
