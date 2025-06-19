@@ -36,7 +36,7 @@ fun VersionCatalogBuilder.spring() {
 }
 
 fun VersionCatalogBuilder.voice() {
-    version("lavaplayer", "a69ca55242e6b43cbb6a214a8a66405ceba8dcc0-SNAPSHOT")
+    version("lavaplayer", "0418c10e0526a329d5c117493f2e3fd96e62e614-SNAPSHOT")
     version("koe", "2.1.1")
 
     library("lavaplayer", "dev.arbjerg", "lavaplayer").versionRef("lavaplayer")
