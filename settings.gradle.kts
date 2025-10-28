@@ -37,14 +37,15 @@ fun VersionCatalogBuilder.spring() {
 
 fun VersionCatalogBuilder.voice() {
     version("lavaplayer", "0418c10e0526a329d5c117493f2e3fd96e62e614-SNAPSHOT")
-    version("koe", "2.2.0-rc2")
+    version("koe", "v1.0.0")
 
     library("lavaplayer", "dev.arbjerg", "lavaplayer").versionRef("lavaplayer")
     library("lavaplayer-ip-rotator", "dev.arbjerg", "lavaplayer-ext-youtube-rotator").versionRef("lavaplayer")
     library("lavadsp", "dev.arbjerg", "lavadsp").version("0.7.8")
 
-    library("koe", "moe.kyokobot.koe", "core").versionRef("koe")
-    library("koe-udpqueue", "moe.kyokobot.koe", "ext-udpqueue").versionRef("koe")
+    library("koe", "moe.infnibor.koe", "core").versionRef("koe")
+    library("koe-udpqueue", "moe.infnibor.koe", "ext-udpqueue").versionRef("koe")
+    library("koe-dave", "moe.infnibor.koe", "dave").versionRef("koe")
 
     version("udpqueue", "0.2.7")
     val platforms = listOf("linux-x86-64", "linux-x86", "linux-aarch64", "linux-arm", "linux-musl-x86-64", "linux-musl-aarch64", "win-x86-64", "win-x86", "darwin")
