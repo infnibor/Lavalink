@@ -27,6 +27,8 @@ allprojects {
     repositories {
         mavenCentral() // main maven repo
         mavenLocal()   // useful for developing
+        maven("https://maven.pcreators.pl/releases")
+        maven("https://maven.pcreators.pl/snapshots")
         maven("https://m2.dv8tion.net/releases")
         maven("https://maven.lavalink.dev/releases")
         maven("https://maven.lavalink.dev/snapshots")
@@ -57,8 +59,8 @@ subprojects {
                 val mavenPassword = findProperty("MAVEN_PASSWORD") as String?
                 if (!mavenUsername.isNullOrEmpty() && !mavenPassword.isNullOrEmpty()) {
                     repositories {
-                        val snapshots = "https://maven.lavalink.dev/snapshots"
-                        val releases = "https://maven.lavalink.dev/releases"
+                        val snapshots = "https://maven.pcreators.pl/snapshots"
+                        val releases = "https://maven.pcreators.pl/releases"
 
                         maven(if (release) releases else snapshots) {
                             credentials {
@@ -68,7 +70,7 @@ subprojects {
                         }
                     }
                 } else {
-                    logger.lifecycle("Not publishing to maven.lavalink.dev because credentials are not set")
+                    logger.lifecycle("Not publishing to maven.pcreators.pl because credentials are not set")
                 }
             }
 
