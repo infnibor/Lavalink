@@ -3,6 +3,23 @@
 Each release usually includes various fixes and improvements.
 The most noteworthy of these, as well as any features and breaking changes, are listed here.
 
+# v4.2.2
+* Updated koe to version [`3.0.0-pre6`](https://github.com/KyokoBot/koe/releases/tag/3.0.0-pre6)
+* Updated libdave to version [`0.1.3`](https://github.com/KyokoBot/libdave-jvm/releases/tag/0.1.3)
+
+## v4.2.1
+* Updated koe to version [`3.0.0-pre5`](https://github.com/KyokoBot/koe/releases/tag/3.0.0-pre5)
+* Updated libdave to version [`0.1.0`](https://github.com/KyokoBot/libdave-jvm/releases/tag/0.1.0)
+
+## v4.2.0
+> [!IMPORTANT]
+> This is the first Lavalink release with [DAVE](https://daveprotocol.com/) (E2EE voice) support.
+> To use DAVE, you need to update your client library to a version that supports it.
+> The voice state has a new [`channelId`](docs/api/rest.md#voice-state) field which is required to connect to discords voice servers.
+
+* Added support for [DAVE](https://daveprotocol.com/) in https://github.com/lavalink-devs/Lavalink/pull/1190.
+* Added SoundCloud filter out preview tracks config option in https://github.com/lavalink-devs/Lavalink/pull/1191/changes/a0035055f35634b7d9c6bf727822ea44ed79ba8b
+
 ## v4.1.2
 * Updated Lavaplayer to [`2.2.6`](https://github.com/lavalink-devs/lavaplayer/releases/tag/2.2.6)
 * Updated Koe to [`2.2.0-rc2`](https://github.com/KyokoBot/koe/releases/tag/2.2.0-rc2)
@@ -421,7 +438,7 @@ server and port. Port is specified by `server.port`.
 ## v3.0
 * **Breaking:** The minimum required Java version to run the server is now Java 10.   
 **Please note**: Java 10 will be obsolete
-as of [September 2018 with the release of Java 11](http://www.java-countdown.xyz/). Expect a Lavalink major version release that will be targetting
+as of [September 2018 with the release of Java 11](http://www.java-countdown.xyz/). Expect a Lavalink major version release that will be targeting
 Java 11 by that time.
 * **Breaking:** Changes to the output of the /loadtracks endpoint. [\#91](https://github.com/lavalink-devs/Lavalink/pull/91), [\#114](https://github.com/lavalink-devs/Lavalink/pull/114), [\#116](https://github.com/lavalink-devs/Lavalink/pull/116)
 * **Breaking:** The Java client has been moved to a [new repository](https://github.com/lavalink-devs/Lavalink-Client).

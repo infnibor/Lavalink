@@ -22,7 +22,7 @@ You can also use a combination of both. Environment variables take precedence ov
 
 ## Example environment variables
 
-```env title="enviroment variables"
+```env title="environment variables"
 SERVER_PORT
 SERVER_ADDRESS
 SERVER_HTTP2_ENABLED
@@ -68,6 +68,7 @@ LAVALINK_SERVER_USE_SEEK_GHOSTING
 LAVALINK_SERVER_PLAYER_UPDATE_INTERVAL
 LAVALINK_SERVER_YOUTUBE_SEARCH_ENABLED
 LAVALINK_SERVER_SOUNDCLOUD_SEARCH_ENABLED
+LAVALINK_SERVER_SOUNDCLOUD_FILTER_OUT_PREVIEW_TRACKS
 
 LAVALINK_SERVER_GC_WARNINGS
 

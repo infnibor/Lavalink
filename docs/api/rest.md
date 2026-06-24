@@ -15,7 +15,7 @@ Routes are prefixed with `/v3` as of `v3.7.0` and `/v4` as of `v4.0.0`. Routes w
 
 ## Insomnia Collection
 
-You can find an [Insomnia](https://insomnia.rest/) collection in the [here](Insomnia.json) which contains all the endpoints and their respective payloads.
+You can find an [Insomnia](https://insomnia.rest/) collection [here](Insomnia.json) which contains all the endpoints and their respective payloads.
 
 ## Error Responses
 
@@ -104,10 +104,10 @@ Response:
 
 #### Track Loading Result
 
-| Field    | Type                                | Description            |       
-|----------|-------------------------------------|------------------------|
-| loadType | [LoadResultType](#load-result-type) | The type of the result | 
-| data     | [LoadResultData](#load-result-data) | The data of the result |
+| Field    | Type                                 | Description            |       
+|----------|--------------------------------------|------------------------|
+| loadType | [LoadResultType](#load-result-type)  | The type of the result | 
+| data     | ?[LoadResultData](#load-result-data) | The data of the result |
 
 #### Load Result Type
 
@@ -144,11 +144,11 @@ Response:
 
 ##### Playlist Result Data
 
-| Field      | Type                                  | Description                                |
-|------------|---------------------------------------|--------------------------------------------|
-| info       | [PlaylistInfo](#playlist-info) object | The info of the playlist                   |
-| pluginInfo | Object                                | Addition playlist info provided by plugins |
-| tracks     | array of [Track](#track) objects      | The tracks of the playlist                 |
+| Field      | Type                                  | Description                                  |
+|------------|---------------------------------------|----------------------------------------------|
+| info       | [PlaylistInfo](#playlist-info) object | The info of the playlist                     |
+| pluginInfo | Object                                | Additional playlist info provided by plugins |
+| tracks     | array of [Track](#track) objects      | The tracks of the playlist                   |
 
 <details markdown="1">
 <summary>Example Payload</summary>
@@ -192,7 +192,7 @@ Array of [Track](#track) objects from the search result.
 
 ##### Empty Result Data
 
-Empty object.
+`null`.
 
 <details markdown="1">
 <summary>Example Payload</summary>
@@ -200,7 +200,7 @@ Empty object.
 ```yaml
 {
   "loadType": "empty",
-  "data": { }
+  "data": null
 }
 ```
 
@@ -344,15 +344,19 @@ Array of [Track](#track) objects
 
 #### Voice State
 
-| Field     | Type   | Description                                       |
-|-----------|--------|---------------------------------------------------|
-| token     | string | The Discord voice token to authenticate with      |
-| endpoint  | string | The Discord voice endpoint to connect to          |
-| sessionId | string | The Discord voice session id to authenticate with |
+| Field     | Type        | Description                                           |
+|-----------|-------------|-------------------------------------------------------|
+| token     | string      | The Discord voice token to authenticate with          |
+| endpoint  | string      | The Discord voice endpoint to connect to              |
+| sessionId | string      | The Discord voice session id to authenticate with     |
+| channelId | ?string[^1] | The Discord voice channel id the bot is connecting to |
 
-`token`, `endpoint`, and `sessionId` are the 3 required values for connecting to one of Discord's voice servers.
-`sessionId` is provided by the Voice State Update event sent by Discord, whereas the `endpoint` and `token` are provided
-with the Voice Server Update. Please refer to https://discord.com/developers/docs/topics/gateway-events#voice
+[^1]: `channelId` is not nullable when updating the player.
+
+`token`, `endpoint`, `sessionId` and `channelId` are the 4 required values for connecting to one of Discord's voice servers.
+`sessionId` & `channelId` are provided by the Voice State Update event sent by Discord, whereas the `endpoint` and `token` are provided
+with the Voice Server Update.
+Please refer to https://docs.discord.com/developers/events/gateway-events#voice-state-update & https://docs.discord.com/developers/events/gateway-events#voice-server-update
 
 #### Filters
 
@@ -1136,7 +1140,7 @@ Response:
 
 ---
 
-### Unmark all failed address
+### Unmark all failed addresses
 
 ```
 POST /v4/routeplanner/free/all
